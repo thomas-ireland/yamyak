@@ -1,0 +1,648 @@
+  /****************************/
+ /******** APP WIDE FONT *****/
+/****************************/
+
+body {
+font-family: "Lucida Typewriter", monospace;
+}
+
+  /***********************************/
+ /****** DISPLAY LOADING STATUS *****/
+/***********************************/
+
+.loading-status{
+text-align: center;
+}
+
+.loading-status h1{
+color:#454545;
+font-size: 1.5em;
+font-style: italic;
+padding:10px;
+}
+
+  /*************************************************/
+ /****** ERROR MESSAGE IF USER HAS NO THREADS *****/
+/*************************************************/
+
+.no-treads p{
+padding:10px;
+font-size: 1.2em;
+}
+
+  /*******************************************/
+ /****** USED TO CLEAR FLOATED ELEMENTS *****/
+/*******************************************/
+
+.clear:after{
+content: "";
+display: table;
+clear: both;
+}
+
+  /*******************************/
+ /****** INPUTS AND BUTTONS *****/
+/*******************************/
+
+input, textarea {
+border:none; 
+width: 100%;
+padding:20px;
+font-size: 20px;
+color:#454545;
+background-color: #F7F7F7;
+border-radius: 0;
+/*font-family: "Lucida Typewriter", monospace;*/
+}
+
+input:focus, textarea:focus{
+outline:none;
+background-color: #EBEBEB;
+}
+
+button:focus{
+outline:none;
+}
+
+input::-webkit-input-placeholder, 
+textarea::-webkit-input-placeholder {
+font-family: 'Open Sans', sans-serif;
+font-weight: 400;
+color:  #B8B8B8;
+}
+
+button {
+border:none;
+font-family: 'Open Sans', sans-serif;
+font-weight: 300;
+font-size: 1em;
+background-color: rgb(105,105,105);
+height:50px;
+width:160px;
+color: rgb(255,255,255);
+text-align: center;
+line-height: 40px;
+}
+
+button:hover{
+background-color: rgb(0,0,0);
+}
+
+.button-post{
+float:right;
+margin-right:2px;
+}
+
+.button-cancel{
+float:right;
+margin-left:2px;
+}
+
+.input-auth{
+width: 450px;
+display: block;
+margin: auto;
+margin-bottom: 5px;
+}
+
+.button-auth{
+display:block;
+margin: auto;
+width:450px;
+margin-top:5px;
+height:60px;
+}
+
+  /*******************************/
+ /*********** AUTH AREAS  *******/
+/*******************************/
+
+.auth{
+text-align: center;
+margin: auto;
+font-family: 'Open Sans', sans-serif;
+font-weight: 400;
+}
+
+.auth h1{
+font-size: 1.5em;
+padding:0 0 40px 0;
+color:#454545;
+}
+
+.auth-error p{
+padding:20px 0 20px 0;
+color:#454545;
+}
+
+.auth-header{
+padding:40px 0 40px 0;
+}
+
+.auth-header img{
+width:150px;
+height:150px;
+border-radius: 50%;
+}
+
+  /*******************************/
+ /******** HEADER BANNER  *******/
+/*******************************/
+
+header{
+position: fixed;
+z-index: 1;
+height:50px;
+width:90%;
+top: 0;
+left: 5%;
+right:5%;
+bottom: 0;
+}
+
+.input-search {
+border:none;
+float: left;
+width:80%;
+height:50px;
+padding:0 0 0 5px;
+background-color: #FAFAFA;
+padding-left:10px;
+font-style: italic;
+}
+
+.button-header-log-in{
+height:50px;
+width:20%;
+float: left;
+}
+
+.mobile-view-menu-icon{
+display: none;
+}
+
+.mobile-view-menu-icon img {
+display: none;
+}
+
+  /******************************************/
+ /******** NAV & THREADFEED COLUMNS  *******/
+/******************************************/
+
+[class*='col-'] {
+float: left;
+}
+
+.col-nav {
+width: 20%;
+margin-left:5%;
+margin-top:50px;
+}
+
+.col-thread-feed {
+width:70%;
+margin-right:5%;
+margin-top:50px;
+}
+
+  /*******************************/
+ /************* NAV PANEL  ******/
+/*******************************/
+
+.nav{
+text-align: right;
+}
+
+.nav-top-banner{    
+height:50px;
+text-align: right;
+padding-right:10px;
+line-height: 50px;
+font-size: 1.2em;
+font-family: 'Open Sans', sans-serif;
+font-weight: 400;
+color:  #B8B8B8;
+background-color: #E6E6E6;
+}
+
+.topic-item li{
+height: 50px;
+line-height: 50px;
+padding-right:10px;
+}
+
+.topic-item li:hover{
+background-color: #F0F0F0;
+}
+
+.highlight-nav{
+background-color: #F0F0F0;
+}
+
+.nav-user{
+height: 50px;
+line-height: 50px;
+margin:25px 0 100px 0;
+padding-right:10px;
+}
+
+.nav-user p{
+float: right;
+padding-left:5px;
+}
+
+.nav-user img{
+float: right;
+height:50px;
+width:50px;
+}
+
+.mini-logo{
+height:50px;
+padding:0 0 0 5px;
+}
+
+.mini-logo img {
+width:50px;
+height:50px;
+border-radius: 50%;
+float:left;
+}
+
+.mini-logo h1 {
+float: left;
+line-height: 50px;
+font-size:0.9em;
+color:rgb(192,192,192);
+font-family: 'Open Sans', sans-serif;
+font-weight: 400;
+padding-left:5px;
+}
+
+  /***************************************/
+ /************** THREADFEED PANEL  ******/
+/***************************************/
+
+.input-thread-title{
+height:50px;
+background-color: #F0F0F0;
+}
+
+.input-thread-content{
+height:100px;
+outline-top:none;
+background-color:  #F0F0F0;
+}
+
+select{
+font-family: "Lucida Typewriter", monospace;
+font-size: 20px;
+border: none;
+float:right; 
+margin:10px 5px 0 0;
+}
+
+.thread-input{
+margin-bottom:10px;
+}
+
+.button-thread-log-in{
+float: right;
+}
+
+.preview h1{
+color:#454545;
+font-size: 1.3em;
+}
+
+.preview-thread{
+margin:20px 0 50px 20px;
+}
+
+.preview-thread  p{
+color:#454545;
+}
+
+.preview-comment{
+margin:20px 0 10px 0;
+}
+
+.thread{
+margin-bottom:20px;
+padding-left:20px;
+}
+
+.comments{
+margin-bottom:20px;
+}
+
+.preview-comment p{
+color:#454545;
+}
+
+.contents{
+padding:10px;
+}
+
+.col-1-10 {
+width: 10%;
+}
+
+.col-9-10 {
+width:90%;
+}
+
+.thread-profile-pic{
+text-align: center;
+}
+
+.thread-profile-pic img {
+height:55px;
+width:55px;
+}
+
+.comment-profile-pic{
+text-align: center;
+}
+
+.comment-profile-pic img {
+height:50px;
+width:50px;
+}
+
+.thread h1 {
+color:#454545;
+font-size: 1.3em;
+cursor:pointer;
+}
+
+.thread p {
+font-size: 1em;
+padding:20px 0 30px 0;
+}
+
+.comment-details p {
+padding:5px 0 0 0;
+font-size: 1em;
+}
+
+.input-comment-content{
+height:50px;
+padding:15px 10px 10px 20px;
+background-color: #F0F0F0;
+margin:20px 0 30px 0;
+}
+
+.input-comment-content-expanded{
+height:100px;
+padding:20px;
+}
+
+.button-comment-log-in{
+float: right;
+}
+
+  /********************************************/
+ /******** STATS FOR THREADS & COMMENTS ******/
+/********************************************/
+
+.stats{
+height: 30px;
+}
+
+.stats li {
+display: inline;
+line-height: 30px;
+color:#CCCCCC;
+font-size: 0.8em;
+padding:0 10px 0 0;
+}
+
+.stats-username a{
+color:#CCCCCC;
+}
+
+.stats-likes-icon img{
+height:15px;
+width:15px;
+vertical-align: text-bottom;
+}
+
+.stats-comments-icon img{
+height:15px;
+width:15px;
+vertical-align: text-bottom;
+}
+
+.stats-delete-post{
+float:right;
+cursor: pointer;
+}
+
+.stats-delete-post:hover{
+color:#FFB2B2;
+}
+
+  /********************************************/
+ /******** STATS FOR THREADS & COMMENTS ******/
+/********************************************/
+
+.user-detail{
+padding:10px 0 0 20px;
+}
+
+.user-detail img {
+float: left;
+height:200px;
+width:200px;
+opacity: 0.8;
+}
+
+.user-detail p{
+float: left;
+color:  #B8B8B8;
+font-size: 2em;
+padding-left:10px;
+line-height: 200px;
+}
+
+  /********************************************/
+ /******** RESPOND TO TABLET VIEWS ***********/
+/********************************************/
+
+@media (max-width: 900px){
+
+      /*******************************/
+     /******** TABLET HEADER  *******/
+    /*******************************/
+
+    header{
+    width:100%;
+    left: 0;
+    right:0;
+    }
+
+      /*******************************/
+     /******** TABLET NAV  **********/
+    /*******************************/
+
+    .col-nav {
+    width: 25%;
+    margin-left:0;
+    }
+
+      /**************************************/
+     /******** TABLET THREADFEED  **********/
+    /**************************************/
+
+    .col-thread-feed {
+    width:75%;
+    margin-right:0;
+    }
+
+    .col-1-10 {
+    width: 17%;
+    }
+
+    .col-9-10 {
+    width:83%;
+    }
+
+}
+
+  /********************************************/
+ /******** RESPOND TO MOBILE VIEWS ***********/
+/********************************************/
+
+@media (max-width: 600px){
+
+      /*******************************/
+     /******** MOBILE HEADER  *******/
+    /*******************************/
+
+    .mobile-view-menu-icon{
+    display: block;
+    float: left;
+    height:50px;
+    width:10%;
+    text-align: center;
+    cursor: pointer;
+    padding-top:10px;
+    background-color: #fff;
+    }
+
+    .mobile-view-menu-icon img {
+    display: block;
+    margin: auto;
+    height:30px;
+    width:25px;
+    }
+
+    .input-search {
+    width:60%;
+    }
+
+    .button-header-log-in{
+    width:30%;
+    }
+
+      /******************************/
+     /******** MOBILE NAV  *********/
+    /******************************/
+
+    .col-nav {
+    display: none;
+    }
+
+      /***************************************/
+     /********** MOBILE THREADFEED  *********/
+    /***************************************/
+
+    .col-thread-feed {
+    width:100%;
+    }
+
+    .thread{
+    padding-left:0;
+    }
+
+      /***************************************************/
+     /******** HIDE SITE WHEN MOBILE MENU SELECTED  *****/
+    /***************************************************/
+
+    .menu-selected-outter {
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    pointer-events:none;
+    }
+
+    .menu-selected-inner {
+    position:absolute;
+    width:100%;
+    right:-90%;
+    }
+
+    .mobile-view-menu-icon{
+    pointer-events:auto;
+    }
+
+      /*****************************************************/
+     /******** DISPLAY NAV WHEN MOBILE MENU SELECTED  *****/
+    /*****************************************************/
+
+    .display-nav{
+    margin-top: 50px;
+    display: block;
+    width:90%;
+    }
+
+      /*********************************/
+     /******** MOBILE AUTH  ***********/
+    /*********************************/
+
+    .input-auth{
+    width: 95%;
+    }
+
+    .button-auth{
+    width:95%;
+    }
+
+}
+
+  /**************************************/
+ /******** ICON ATTRIBUTION  ***********/
+/**************************************/
+
+.icon-att{
+font-size: 0.5em;
+color:#B8B8B8;
+text-align: center;
+margin: 25% 0 50px 0;
+}
+
+.icon-att a{
+color:#B8B8B8;
+}
+
+  /****************************************/
+ /******** IE 8 AND BELOW WARNING ********/
+/****************************************/
+
+.ie-lte-8{
+font-size: 2em;
+text-align: center;
+font-style: italic;
+}
+
+  /******************************/
+ /******** INPUT ERRORS ********/
+/******************************/
+
+.highlight-red {
+background-color: #FFB2B2;
+}

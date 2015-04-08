@@ -1,0 +1,366 @@
+<!-- client/views/app/app-threadFeed-threads.html-->
+
+<!--/////////////////////////////////////////////////////////////////
+   ////////////// INPUT AREA TO CREAT NEW THREAD ///////////////////  
+  ///////////////////////////////////////////////////////////////// -->
+
+<div class="thread-feed" ng-class="{'move-thread': menuSelected}"> 
+
+    <div class="thread-input clear">
+
+        <form>
+
+            <input class="input-thread-title"  ng-click="displayInput('Thread')" ng-model="threadTitle" type="text" placeholder="{{placeholder}}" ng-class="{ 'highlight-red' : threadTitleError }" ng-keydown="removeErrorThread()"></input>
+            
+            <div ng-show="showInputThread">
+                
+                <textarea class="input-thread-content"  type="text" placeholder="Content" ng-model="threadContent" ng-class="{ 'highlight-red' : threadContentError }" ng-keydown="removeError()">></textarea>
+                    
+                <button class="button-cancel"  ng-click="hideInputThread()">Cancel</button>    
+
+                <div ng-show="inputOffline">
+                    <a ui-sref="auth.signIn"><button class="button-thread-log-in">Sign In</button></a>
+                </div>
+
+                <div ng-show="inputOnline">
+                
+                    <button class="button-post"  ng-click="addThread()">Post</button>
+                
+                    <select  ng-model="selectedTopic" ng-options="topic.title as topic.title for topic in topics" ng-class="{ 'highlight-red' : selectError }">
+                
+                        <option disabled value="">Pick topic</option>
+                
+                    </select> 
+
+                </div>
+
+            </div> <!-- showInputThread -->
+        
+        </form>  
+    
+    </div><!-- thread-input -->
+
+<!--/////////////////////////////////////////////////////////////////
+   ///// DISPLAY PREVIEW OF THREAD WHILE USER IS TYPING ////////////  
+  ///////////////////////////////////////////////////////////////// -->
+
+    <div class="clear preview preview-thread"  ng-show="showPreviewThread">
+
+        <div class="col-1-10">
+
+            <div class="contents thread-profile-pic" ng-class="{'highlightPreview': previewThread }">
+                        <img src="{{previewPicThread}}"/>
+            </div>
+
+        </div>
+
+        <div class="col-9-10"  ng-show="showPreviewThread">
+
+            <div class="contents" ng-class="{'highlightPreview': previewPendingThread }">
+
+                <h1>{{threadTitle}}</h1>
+
+                    <div class="stats">
+
+                        <ul>
+
+                            <li>
+
+                               <span class="stats-username">{{previewUserThread}}</span>
+
+                            </li>
+
+                            <li>
+
+                                <span class="stats-time-elapsed">Typing!</span>
+
+                            </li>
+
+                            <li>
+
+                                <span class="stats-likes-icon"><img src="img/icons/heart-icon.png"/></span>
+
+                                <span class="stats-likes-amount">0</span>
+
+                            </li>
+
+                        </ul>
+
+                    </div><!-- stats -->
+
+            </div><!-- contents -->
+
+            <div class="contents"> 
+
+                <p>{{threadContent}}</p>
+
+            </div><!-- contents -->
+
+        </div><!-- col-9-10 -->
+
+    </div> <!-- clear preview preview-thread -->
+
+<!--///////////////////////////////////////////////////////////////////////////////////////////////
+   ///// UI-VIEWS USED BY THE ROUTING SYSTEM TO INJECT EXPTRA INFO ABOUT A USER IF SELECTED  /////  
+  /////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+    <div ui-view="userDetail"></div> 
+
+<!--/////////////////////////////////////////////////////////////////
+   //////// DISPLAY ERROR IF USER HAS NOT STARTED ANY THREADS //////  
+  ///////////////////////////////////////////////////////////////// -->
+
+    <div class="no-threads" ng-show="threadError">
+
+        <p>Sorry, this user has not started any threads. </p>
+
+    </div>
+
+<!--/////////////////////////////////////////////////////////////////
+   //////// DISPLAY LOADING STATUS AS USER WAITS ON THREADS //////// 
+  ///////////////////////////////////////////////////////////////// -->
+
+    <span class="loading-status"> <h1>{{loadingStatus}}</h1></span> 
+
+<!--/////////////////////////////////////////////////////////////////
+   ////////////// DISPLAY THREADS AS AN EXPANDABLE LIST ////////////  
+  ///////////////////////////////////////////////////////////////// -->
+
+    <div class="clear thread" ng-controller="ThreadController"  ng-repeat=" (threadIndex, thread) in threads  |  filter : query.search">
+
+        <div class="col-1-10">
+
+            <div class="contents thread-profile-pic">
+
+                         <a ui-sref="app.user({user:thread.author})"><img src="{{thread.authorPhoto}}"/></a>
+
+            </div><!-- contents thread-profile-pic -->
+
+        </div><!-- col-1-10 -->
+
+        <div class="col-9-10">
+
+            <div class="contents thread-details">
+
+                <h1 ng-click="getFullThread()">{{thread.title}}</h1>
+
+                <div class="stats">
+
+                    <ul>
+
+                        <li>
+
+                           <span class="stats-username"><a ui-sref="app.userDetail.userThreads({user:thread.author})">{{thread.author}}</a></span>
+                        
+                        </li>
+                        
+                        <li>
+                            
+                            <span class="stats-time-elapsed">{{thread.posted | timeElapsed}}</span>
+                        
+                        </li>
+                        
+                        <li>
+                            
+                            <span class="stats-likes-icon" ><img ng-click="likeThread(thread)" src="img/icons/heart-icon.png"/></span>
+                            
+                            <span class="stats-likes-amount">{{thread.likes.length}}</span>
+                        
+                        </li>
+                        
+                        <li>
+                            
+                            <span class="stats-comments-icon" ng-click="getFullThread()"><img src="img/icons/comments-icon.png"/></span>
+                            
+                            <span class="stats-comments-amount">{{thread.comments.length}}</span>
+                        
+                        </li>
+                        
+                        <li>
+                            
+                            <span class="stats-delete-post" ng-click="removeThread(thread, threadIndex)">{{thread.author | checkAuthor}}</span>
+                        
+                        </li>
+                    
+                    </ul>
+                
+                </div><!-- stats -->
+            
+            </div><!-- contents thread-details -->
+
+<!--/////////////////////////////////////////////////////////////
+   /////// DISPLAY EXPANDED THREAD WHEN CLICKED ////////////////  
+  ///////////////////////////////////////////////////////////// -->
+
+            <div ng-show="showFullThread">
+
+                <div class="contents">
+
+                    <p ng-bind-html="thread.content | insertBreaks "></p>
+                
+                </div><!-- contents -->
+
+                <div class="clear comments" ng-repeat="(commentIndex, comment) in thread.comments">
+                    
+                    <div class="col-1-10">
+                        
+                        <div class="contents comment-profile-pic">
+                            
+                            <a ui-sref="app.user({user:thread.author})">
+                            
+                            <img src="{{comment.authorPhoto}}"/></a>
+                        
+                        </div><!-- contents comment-profile-pic -->
+                    
+                    </div><!-- coll-left-comment -->
+                    
+                    <div class="col-9-10">
+                        
+                        <div class="contents comment-details">
+                            
+                            <p  ng-bind-html="comment.content | insertBreaks "></p>
+                            
+                            <div class="stats">
+                                
+                                <ul>
+                                    
+                                    <li>
+                                       
+                                       <span class="stats-username"><a ui-sref="app.user({user:thread.author})">{{comment.author}}</a></span>
+                                    
+                                    </li>
+                                    
+                                    <li>
+                                        
+                                        <span class="stats-time-elapsed">{{comment.posted | timeElapsed}}</span>
+                                    
+                                    </li>
+                                    
+                                    <li>
+                                        
+                                        <span class="stats-likes-icon" ng-click="likeComment(thread, comment)" >
+                                        
+                                        <img  src="img/icons/heart-icon.png"/></span>
+                                        
+                                        <span class="stats-likes-amount">{{comment.likes.length}}</span>
+                                    
+                                    </li>
+                                    
+                                    <li>
+                                        
+                                        <span class="stats-delete-post" ng-click="removeComment(thread, comment, commentIndex)">{{comment.author | checkAuthor}}</span>
+                                      
+                                     </li>
+
+                                 </ul>
+
+                            </div><!-- stats -->
+
+                        </div><!-- contents comment-details -->
+
+                    </div><!-- coll-9-10 -->
+
+                </div><!-- clear comments -->
+
+<!--/////////////////////////////////////////////////////////////////
+   ///// DISPLAY PREVIEW OF COMMENT WHILE USER IS TYPING ///////////  
+  ///////////////////////////////////////////////////////////////// -->
+
+                <div class="clear preview-comment" ng-show="showPreviewComment" ng-class="{'highlightPreview': previewPending }">
+                    
+                    <div class="col-1-10">
+                        
+                        <div class="contents thread-profile-pic">
+                            
+                            <img src="{{previewPicComment}}"/>
+                        
+                        </div>
+                    
+                    </div>
+                    
+                    <div class="col-9-10">
+                        
+                        <div class="contents comment-details"  ng-class="{'highlightPreview': previewPending }">
+                            
+                            <p>{{commentData.commentContent}}</p>
+                            
+                            <div class="stats">
+                                
+                                <ul>
+                                    
+                                    <li>
+                                       
+                                       <span class="stats-username">{{previewUserComment}}</span>
+                                    
+                                    </li>
+                                    
+                                    <li>
+                                        
+                                        <span class="stats-time-elapsed">Typing!</span>
+                                    
+                                    </li>
+                                    
+                                    <li>
+                                        
+                                        <span class="stats-likes-icon"><img src="img/icons/heart-icon.png"/></span>
+                                        
+                                        <span class="stats-likes-amount">0</span>
+                                    
+                                    </li>
+                                
+                                </ul>
+
+                            </div><!-- stats -->
+
+                        </div><!-- comments comment-details -->
+
+                    </div><!-- col-9-10 -->
+
+                </div><!-- clear preview-comment -->
+
+<!--////////////////////////////////////////////////////////////
+   //////////////////////// ADD A COMMENT /////////////////////  
+  //////////////////////////////////////////////////////////// -->
+
+                <form class="floated-elements-wrapper" ng-submit="addComment(thread)">
+
+                    <textarea class="input-comment-content" ng-click="displayInput('Comment')" ng-class="{'input-comment-content-expanded':commentClicked} " type="text" placeholder="Comment..." ng-model="commentData.commentContent" ng-keydown="removeErrorComment()"></textarea>
+
+                    <button class="button-cancel" ng-show="showInputComment" ng-click="hideInputComment()">Cancel</button>
+
+                    <div ng-show="inputOffline">
+
+                        <a ui-sref="auth.signIn"><button ng-show="showInputComment" class="button-comment-log-in">Sign In</button></a>
+
+                    </div>
+
+                    <div ng-show="inputOnline">
+
+                        <button class="button-post" ng-show="showInputComment" type="submit">Post</button> 
+
+                    </div>
+
+                </form>
+
+            </div><!-- show-full-thread -->
+
+        </div><!-- col-9-10 -->
+
+    </div><!-- clear thread -->
+
+</div><!-- contents thread-feed -->
+
+<!--/////////////////////////////////////////////////
+   ///// ATTRIBUTION FOR THE ICONS THAT I USED /////  
+  ///////////////////////////////////////////////// -->
+
+    <div class="icon-att">
+
+        Icons made by <a href="http://www.flaticon.com/authors/anton-saputro" title="Anton Saputro">Anton Saputro</a> 
+
+        from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>
+
+        is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+        
+    </div>
+

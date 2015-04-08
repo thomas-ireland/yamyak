@@ -1,0 +1,43 @@
+<!-- client/views/app/app-nav.html-->
+
+<!--/////////////////////////////////////////////////////////////////////////////////////
+   /////// LEFT HAND SIDE PANEL DISPLAYING NAV AND USER INFO IF THEY ARE SIGNED IN /////  
+  ///////////////////////////////////////////////////////////////////////////////////// -->
+
+<nav class="col-nav" ng-class="{'display-nav': menuSelected}">
+
+    <div class="nav">
+
+        <div class="nav-top-banner">
+
+            <h1>Posts</h1>
+
+        </div>
+
+        <ul>
+
+            <a ui-sref="app.allThreads"><span class="topic-item" ng-class="{ 'highlight-nav' : allPosts }"><li> All Posts </li></span></a>
+
+        </ul>
+
+        <ul ng-repeat="topic in topics">
+
+                <a ui-sref="app.topicThreads({topic:topic.title})"><span class="topic-item"><li> {{topic.title}}</li></span></a>
+
+        </ul>
+
+        <div class="nav-user">
+
+            <a ui-sref="app.user({user:usernameAuth})"><p>{{usernameAuth}}</p><img ng-show="userImage" ng-src="{{userImage}}"/></a>
+
+        </div>
+
+        <div class="mini-logo">
+
+            <img src="img/yamyak-logo.png"/><h1>THE FOOD FORUM</h1>
+
+        </div>
+
+    </div>
+
+</nav>

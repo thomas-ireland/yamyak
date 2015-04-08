@@ -1,0 +1,29 @@
+<!-- client/views/auth/auth-sign-in.html-->
+
+<!--////////////////////////
+   ///// SIGN IN PAGE /////  
+  //////////////////////// -->
+
+<div class="auth sign-in">
+
+    <h1>Sign In</h1>
+
+    <form ng-submit="signIn()">
+
+        <input class="input-auth" type="text" placeholder="Username" ng-model="username"></input>
+
+        <input class="input-auth" type="password" placeholder="Password" ng-model="password"></input>
+
+        <div class="auth-error" ng-show="showAuthError"><p>{{authError}}</p></div>
+
+        <button class="button-auth" type="submit">Sign in</button>
+
+        <a ui-sref="auth.signUp"><button class="button-auth">Not a member?</button></a>
+
+        <a ui-sref="app.allThreads"><button class="button-auth">Return to home page</button></a>
+
+    </form>
+    
+</div>
+
+

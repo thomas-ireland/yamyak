@@ -1,0 +1,23 @@
+<!-- client/views/app/app-header.html-->
+
+<!--///////////////////////////////?????//////////////////////////////////
+   ///// HEADER THAT DISPLAYS SEARCH BAR AND TOGGLES SIGN IN BUTTON /////  
+  ////////////////////////////////////////////////////////////////////// -->
+
+<header ng-class="{ 'menu-selected-outter': menuSelected }">
+
+    <div ng-class="{ 'menu-selected-inner': menuSelected }">  
+
+        <div class="mobile-view-menu-icon">
+
+            <img  src="img/icons/menu-icon.svg" ng-click="displayNav()">
+            
+        </div>
+
+        <input class="input-search" type="text" placeholder="SEARCH" ng-model="query.search"/>
+
+        <a ui-sref="auth.{{authActionParams}}"><button class="button-header-log-in">{{authActionButton}}</button></a>
+
+    </div>
+
+</header>
