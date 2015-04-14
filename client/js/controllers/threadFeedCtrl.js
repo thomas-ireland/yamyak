@@ -328,7 +328,7 @@ threadFeedCtrl.controller('ThreadFeedController',
             // listen for messages regarding the loading status of threads and update the model with it. 
             Socket.on('threads:loading', function(loadingStatus){
                 
-                $scope.loadingStatus = loadingStatus;
+                //$scope.loadingStatus = loadingStatus;
             });
 
             //listen for new threads being recieved and push them into the model if the current users model is relevant to the thread
