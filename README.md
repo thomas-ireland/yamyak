@@ -13,11 +13,15 @@ I have used a food discussion forum called YamYak as an example of it being used
 THE STACK:
 
 HTML5
-ResponsiveCSS3
+
+Responsive CSS3
+
 AngularJS
+
 Socket.io
-Node.js 
-Express 
+
+Node.js / Express 
+
 MongoDB / Mongoose
 
 You can visit a running example of the application here:
