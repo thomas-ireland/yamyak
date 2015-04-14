@@ -82,6 +82,7 @@ width:160px;
 color: rgb(255,255,255);
 text-align: center;
 line-height: 40px;
+cursor: pointer;
 }
 
 button:hover{
@@ -229,13 +230,14 @@ background-color: #E6E6E6;
 height: 50px;
 line-height: 50px;
 padding-right:10px;
+font-size: 1.2em;
 }
 
 .topic-item li:hover{
 background-color: #F0F0F0;
 }
 
-.highlight-nav{
+.active-topic{
 background-color: #F0F0F0;
 }
 
@@ -566,6 +568,16 @@ line-height: 200px;
     padding-left:0;
     }
 
+    .thread-profile-pic img {
+    height:45px;
+    width:45px;
+    }
+    
+    .comment-profile-pic img {
+    height:45px;
+    width:45px;
+    }
+
       /***************************************************/
      /******** HIDE SITE WHEN MOBILE MENU SELECTED  *****/
     /***************************************************/
@@ -620,13 +632,13 @@ line-height: 200px;
 
 .icon-att{
 font-size: 0.5em;
-color:#B8B8B8;
+color:#f0f0f0;
 text-align: center;
 margin: 25% 0 50px 0;
 }
 
 .icon-att a{
-color:#B8B8B8;
+color:#f0f0f0;
 }
 
   /****************************************/
@@ -645,4 +657,35 @@ font-style: italic;
 
 .highlight-red {
 background-color: #FFB2B2;
+transition: background-color .5s ease-in;
 }
+
+.fade-in-animation.ng-hide-remove{
+   -webkit-transition: 1s linear all; /* Chrome */
+  transition: 0.3s linear all;
+  opacity: 0;
+}
+.fade-in-animation.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+}
+
+.fade-in-animation.ng-hide-add{
+   -webkit-transition: 1s linear all; /* Chrome */
+  transition: 0.2s linear all;
+  opacity: 1;
+}
+.fade-in-animation.ng-hide-add.ng-hide-add-active {
+  opacity:0;
+}
+
+ form input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    background-color: #ffcccc;
+    transition: background-color .5s ease-in;
+  }
+
+  form input.ng-valid.ng-touched, textarea.ng-valid.ng-touched {
+    background-color: #EBEBEB;
+    transition: background-color .5s ease-in;
+  }
+
+

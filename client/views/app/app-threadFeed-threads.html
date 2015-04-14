@@ -8,13 +8,13 @@
 
     <div class="thread-input clear">
 
-        <form>
+        <form name="threadForm" novalidate>
 
-            <input class="input-thread-title"  ng-click="displayInput('Thread')" ng-model="threadTitle" type="text" placeholder="{{placeholder}}" ng-class="{ 'highlight-red' : threadTitleError }" ng-keydown="removeErrorThread()"></input>
+            <input class="input-thread-title"  ng-click="displayInput('Thread')" ng-model="threadTitle" type="text" placeholder="{{placeholder}}" required ></input>
             
-            <div ng-show="showInputThread">
+            <div class="fade-in-animation" ng-show="showInputThread">
                 
-                <textarea class="input-thread-content"  type="text" placeholder="Content" ng-model="threadContent" ng-class="{ 'highlight-red' : threadContentError }" ng-keydown="removeError()">></textarea>
+                <textarea class="input-thread-content"  type="text" placeholder="Content" ng-model="threadContent" required ></textarea>
                     
                 <button class="button-cancel"  ng-click="hideInputThread()">Cancel</button>    
 
@@ -24,9 +24,9 @@
 
                 <div ng-show="inputOnline">
                 
-                    <button class="button-post"  ng-click="addThread()">Post</button>
+                    <button class="button-post" ng-click="addThread()">Post</button>
                 
-                    <select  ng-model="selectedTopic" ng-options="topic.title as topic.title for topic in topics" ng-class="{ 'highlight-red' : selectError }">
+                    <select  ng-model="selectedTopic" required ng-options="topic.title as topic.title for topic in topics" ng-class="{ 'highlight-red' : selectError }">
                 
                         <option disabled value="">Pick topic</option>
                 
@@ -54,7 +54,7 @@
 
         </div>
 
-        <div class="col-9-10"  ng-show="showPreviewThread">
+        <div class="col-9-10" class="fade-in-animation"  ng-show="showPreviewThread">
 
             <div class="contents" ng-class="{'highlightPreview': previewPendingThread }">
 
@@ -192,7 +192,7 @@
    /////// DISPLAY EXPANDED THREAD WHEN CLICKED ////////////////  
   ///////////////////////////////////////////////////////////// -->
 
-            <div ng-show="showFullThread">
+            <div class="fade-in-animation" ng-show="showFullThread">
 
                 <div class="contents">
 
@@ -266,7 +266,7 @@
    ///// DISPLAY PREVIEW OF COMMENT WHILE USER IS TYPING ///////////  
   ///////////////////////////////////////////////////////////////// -->
 
-                <div class="clear preview-comment" ng-show="showPreviewComment" ng-class="{'highlightPreview': previewPending }">
+                <div class="clear preview-comment fade-in-animation" ng-show="showPreviewComment" ng-class="{'highlightPreview': previewPending }">
                     
                     <div class="col-1-10">
                         
@@ -322,9 +322,9 @@
    //////////////////////// ADD A COMMENT /////////////////////  
   //////////////////////////////////////////////////////////// -->
 
-                <form class="floated-elements-wrapper" ng-submit="addComment(thread)">
+                <form novalidate class="floated-elements-wrapper" ng-submit="addComment(thread)">
 
-                    <textarea class="input-comment-content" ng-click="displayInput('Comment')" ng-class="{'input-comment-content-expanded':commentClicked} " type="text" placeholder="Comment..." ng-model="commentData.commentContent" ng-keydown="removeErrorComment()"></textarea>
+                    <textarea class="input-comment-content" ng-click="displayInput('Comment')" ng-class="{'input-comment-content-expanded':commentClicked} " type="text" placeholder="Comment..." ng-model="commentData.commentContent" ng-keydown="removeErrorComment()" ></textarea>
 
                     <button class="button-cancel" ng-show="showInputComment" ng-click="hideInputComment()">Cancel</button>
 

@@ -15,9 +15,9 @@
 
 'use strict';
 
-angular.module('ThreadListCtrl', [])
+var threadFeedCtrl = angular.module('ThreadFeedCtrl', []);
 
-.controller('ThreadListController', 
+threadFeedCtrl.controller('ThreadFeedController', 
     [           '$scope',  '$rootScope', '$stateParams', 'ThreadApi', '$log', 'Socket', 'threads', 'topics', 'user',
         function($scope,    $rootScope,   $stateParams,   ThreadApi,   $log,   Socket,   threads,   topics,   user) {
 
@@ -74,6 +74,7 @@ angular.module('ThreadListCtrl', [])
                 $scope.placeholder = startThread; 
                 $scope.selectedTopic = 'Pick topic';
                 $scope.threadTitleError = $scope.threadContentError = $scope.selectError = false;
+                $scope.threadForm.$setUntouched();
             }
               
             $scope.hideInputComment = function(){
@@ -100,14 +101,6 @@ angular.module('ThreadListCtrl', [])
                 
             }
 
-              /******************************************************************************/
-             /******* KEYDOWN EVENT TO REMOVE HIGHLIGHTED ERROR ON THREAD INPUT AREA *******/
-            /******************************************************************************/
-
-            $scope.removeErrorThread = function(){
-                if($scope.threadTitleError) $scope.threadTitleError = false;
-                if($scope.threadContent) $scope.threadContentError = false;
-            }
 
               /*****************************************/
              /******* USER EVENT: ADD THREAD **********/
@@ -117,11 +110,10 @@ angular.module('ThreadListCtrl', [])
            
                 if(!user.signedIn) return;
 
-                if(!$scope.threadTitle) $scope.threadTitleError = true;
-                if(!$scope.threadContent) $scope.threadContentError = true;
-                if(!$scope.selectedTopic) $scope.selectError = true;
+                if(!$scope.selectedTopic || $scope.selectedTopic === 'Pick topic')
+                    $scope.selectError = true;
 
-                if(!$scope.threadTitle || !$scope.threadContent || !$scope.selectedTopic) return;
+                if(!$scope.threadTitle || !$scope.threadContent || !$scope.selectedTopic || $scope.selectedTopic === 'Pick topic') return;
 
                 $scope.newThread = {
                     title: $scope.threadTitle,
@@ -409,3 +401,49 @@ angular.module('ThreadListCtrl', [])
 
         }
     ]);
+
+/**
+ *
+ * Controller for individual threads
+ *
+ * Currently this controller only handles the show / hide event of expanding threads
+ * By creating a controller for each thread Angular can work out which individual thread the user has selected
+ * 
+ * TODO : this controller should handle all events for individual threads rather than them being handled in the threadFeed controller -
+ * because this will have performance gains when updates come in from web sockets as it avoids having to checking the current model
+ * each time there is an update by registering a listener can to each thread and even comments (which would involve another controller)
+ * 
+ */
+
+threadFeedCtrl.controller('ThreadController',
+    [           '$scope', 
+        function($scope) {
+
+            $scope.getFullThread = function() { 
+
+                $scope.showFullThread = ! $scope.showFullThread;
+            };
+        }
+    ]);
+
+/**
+ *
+ * Controller for individual threads
+ *
+ * Currently this controller only handles the show / hide event of expanding threads
+ * By creating a controller for each thread Angular can work out which individual thread the user has selected
+ * 
+ * TODO : this controller should handle all events for individual threads rather than them being handled in the threadFeed controller -
+ * because this will have performance gains when updates come in from web sockets as it avoids having to checking the current model
+ * each time there is an update by registering a listener can to each thread and even comments (which would involve another controller)
+ * 
+ */
+
+threadFeedCtrl.controller('UserDetailController',
+    [           '$scope', 'userOffline',
+        function($scope,   userOffline) {
+
+            $scope.userImage = userOffline.data[0].photo;
+            $scope.username = userOffline.data[0].username;
+        }
+]);

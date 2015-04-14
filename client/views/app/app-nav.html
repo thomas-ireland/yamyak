@@ -16,13 +16,13 @@
 
         <ul>
 
-            <a ui-sref="app.allThreads"><span class="topic-item" ng-class="{ 'highlight-nav' : allPosts }"><li> All Posts </li></span></a>
+            <a ui-sref="app.allThreads"><span class="topic-item"><li class="topic-item" nav-active> All Posts </li></span></a>
 
         </ul>
 
         <ul ng-repeat="topic in topics">
 
-                <a ui-sref="app.topicThreads({topic:topic.title})"><span class="topic-item"><li> {{topic.title}}</li></span></a>
+                <a ui-sref="app.topicThreads({topic:topic.title})"><span class="topic-item"><li class="topic-item" nav-active> {{topic.title}}</li></span></a>
 
         </ul>
 

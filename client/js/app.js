@@ -6,19 +6,16 @@ angular.module('yamYak', [
 	'HeaderCtrl',
 	'TopicsService',
 	'NavCtrl',
-	'ThreadListCtrl',
-	'ThreadCtrl',
+	'ThreadFeedCtrl',
 	'ThreadService',
 	'AuthCtrl',
 	'AuthService',
-	'SignOutCtrl',
-	'UserDetailCtrl',
 	'SocketService',
 	'ProfileService',
 	'ngSanitize',
-	'TimeElapsedFilter',
-	'InsertBreaksFilter',
-	'CheckAuthorFilter'
+	'FormatFilters',
+	'jQueryDirectives',
+	'ngAnimate'
 ]);
 
 

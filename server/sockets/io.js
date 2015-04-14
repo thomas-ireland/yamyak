@@ -18,7 +18,7 @@ module.exports = function(io) {
 
         socket.on('threads:loading', function(loadingStatus){
          
-            io.emit('threads:loading', loadingStatus);
+            socket.broadcast.emit('threads:loading', loadingStatus);
        
         });
       

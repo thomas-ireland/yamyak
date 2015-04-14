@@ -30,9 +30,11 @@ angular.module('appRoutes', [])
         },
         resolve: {
             user: function(AuthApi){
+
                 return AuthApi.getUser();
             },
             topics: function(TopicsApi){
+
                 return TopicsApi.get();
             }
         }
@@ -43,9 +45,10 @@ angular.module('appRoutes', [])
         views: {
             'threadFeedContent@app': {
                 templateUrl: 'views/app/app-threadFeed-threads.html',
-                controller: 'ThreadListController',
+                controller: 'ThreadFeedController',
                 resolve: {
                     threads: function(ThreadApi){
+
                         return ThreadApi.get();
                     }
                 }
@@ -58,9 +61,10 @@ angular.module('appRoutes', [])
         views: {
             'threadFeedContent@app': {
                 templateUrl: 'views/app/app-threadFeed-threads.html',
-                controller: 'ThreadListController',
+                controller: 'ThreadFeedController',
                 resolve: {
                     threads: function(ThreadApi, $stateParams){
+
                         return  ThreadApi.getTopicThreads($stateParams.topic);
                     }
                 }
@@ -84,9 +88,10 @@ angular.module('appRoutes', [])
             },
             'threadFeedContent@app': {
                     templateUrl: 'views/app/app-threadFeed-threads.html',
-                    controller: 'ThreadListController',
+                    controller: 'ThreadFeedController',
                     resolve: {
                         threads: function(UserApi, $stateParams){
+
                             return UserApi.getUserThreads($stateParams.user);
                     }
                 }
@@ -132,9 +137,10 @@ angular.module('appRoutes', [])
         views: {
             'authAction@auth': {
                 templateUrl: 'views/auth/auth-sign-out.html',
-                controller: 'SignOutController',
+                controller: 'AuthController',
                 resolve: {
                         signedOut: function(AuthApi){
+                            
                             return AuthApi.signOut();
                     }
                 }

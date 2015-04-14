@@ -14,9 +14,9 @@
 
 'use strict';
 
-angular.module('AuthCtrl', [])
+var authCtrl = angular.module('AuthCtrl', []);
 
-.controller('AuthController', 
+authCtrl.controller('AuthController', 
     [           '$scope', '$state', 'AuthApi',
         function($scope,   $state,   AuthApi) {
        
@@ -25,6 +25,7 @@ angular.module('AuthCtrl', [])
                 if(!$scope.username || !$scope.password) return;
 
                 $scope.user = {
+
                     username: '@' + this.username,
                     password: this.password
                 }
@@ -45,8 +46,8 @@ angular.module('AuthCtrl', [])
                         } else {
 
                             // signed in
-                            $scope.username = $scope.password = '';
                             $state.go('app.allThreads', null, { reload : true } );
+                            //$scope.username = $scope.password = '';
                         }
                     },
                     function(e) {
@@ -90,4 +91,26 @@ angular.module('AuthCtrl', [])
             };
 
         }
+    ]);
+
+/**
+ *
+ * Controller for signOut event
+ *
+ * Recieves 'signedOut' data that is injected via Ui-Router resolves
+ * Updates the model ($scope) with the status of the signOut event
+ * The model ($scope) is then automatically exposed to the template for rendering of the view 
+ * 
+ */
+
+authCtrl.controller('SignOutController', 
+    [           '$scope', '$state', 'signedOut',
+        function($scope,   $state,   signedOut) {
+
+            if(signedOut.success)
+                $scope.signOutStatus = "Signed Out!"; 
+             else
+                $log.error('Error in attempt to sign out user', signedOut.error);
+       
+        }  
     ]);

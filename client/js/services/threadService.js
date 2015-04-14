@@ -24,7 +24,7 @@ angular.module('ThreadService', [])
 					return $http.get('/api/threads').then(
 
 		                    function(result){
-
+		                    	
 		                        return { success: true, data: result.data, type: '*' }
 		                    },
 		                    function(e){

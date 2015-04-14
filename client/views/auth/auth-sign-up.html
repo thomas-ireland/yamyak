@@ -8,13 +8,13 @@
 
     <h1>Sign Up</h1>
 
-    <form ng-submit="signUp()">
+    <form novalidate ng-submit="signUp()">
 
-        <input class="input-auth" type="text" placeholder="Username" ng-model="username"></input>
+        <input class="input-auth" type="text" placeholder="Username" ng-model="username" required ></input>
 
-        <input  class="input-auth" type="text" placeholder="E-mail" ng-model="email"></input>
+        <input  class="input-auth" type="email" placeholder="E-mail" ng-model="email" required ></input>
 
-        <input  class="input-auth" type="password" placeholder="Password" ng-model="password"></input>
+        <input  class="input-auth" type="password" placeholder="Password" ng-model="password" required ></input>
 
         <div class="auth-error" ng-show="showAuthError"><p>{{authError}}</p></div>
 
